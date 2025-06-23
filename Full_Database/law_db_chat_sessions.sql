@@ -34,16 +34,6 @@ CREATE TABLE `chat_sessions` (
   CONSTRAINT `chat_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `chat_sessions`
---
-
-LOCK TABLES `chat_sessions` WRITE;
-/*!40000 ALTER TABLE `chat_sessions` DISABLE KEYS */;
-INSERT INTO `chat_sessions` VALUES (1,4,'1749631749006','what is theft in IPC','2025-06-11 08:49:31'),(2,4,'1749632956437','what is the procedure for arrest warrant','2025-06-11 09:09:40'),(3,5,'1749637334319','what is the punishment for murder','2025-06-11 10:23:06'),(4,5,'1749637399820','what is punishment for rape','2025-06-11 10:23:44'),(5,2,'1749663762735','what is written in section 1 of IPC','2025-06-11 17:43:11'),(6,2,'1749663832197','sections under chapter 2 of IPC','2025-06-11 17:44:06'),(7,2,'1750393220435','what is section 40 of IPC','2025-06-20 04:20:38'),(8,4,'1750401551286','what is punishment for theft','2025-06-20 06:45:08');
-/*!40000 ALTER TABLE `chat_sessions` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -54,4 +44,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-24  0:54:19
+-- Dump completed on 2025-06-24  1:10:44

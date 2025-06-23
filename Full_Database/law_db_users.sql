@@ -32,16 +32,6 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'ozayash22','ozayash@gmail.com','pass1234','2025-06-10 20:06:15'),(2,'ozayash','ozayash22@gmail.com','$2b$10$bWg2EQhO3WFHuOZHjz6fo.zfhOafW.jxxgBU9tJ/tG0LrDu.aj4Sm','2025-06-10 20:15:10'),(4,'ozayash','ozayash2@gmail.com','$2b$10$kBkUlir54zVWhAl8fN7iV.lIUu09aqGyFikEe8WUdFaheOEhvB.um','2025-06-11 08:28:44'),(5,'rohitbosak','rohit@gmail.com','$2b$10$CmQF4KW37al7a2xPeR1DjO0oasmcyGM8QtH9NsvvYSErWqK0w4MHW','2025-06-11 10:22:03');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -52,4 +42,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-24  0:54:18
+-- Dump completed on 2025-06-24  1:10:44
