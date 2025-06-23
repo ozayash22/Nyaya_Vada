@@ -4,11 +4,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
+// Handles user registrationc
 exports.register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+     // Insert the new user into the database
     const [result] = await pool.execute(
       'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
       [username, email, hashedPassword]
@@ -20,6 +22,7 @@ exports.register = async (req, res) => {
   }
 };
 
+// Handles user login and JWT token generation
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -36,12 +39,14 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
+    // Create a JWT token containing the user's ID
     const token = jwt.sign(
       { userId: user.id },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
 
+    // Send the token and user info to the frontend
     res.json({
       token,
       user: {
@@ -55,6 +60,7 @@ exports.login = async (req, res) => {
   }
 };
 
+// Returns the authenticated user's info (requires auth middleware)
 exports.me = async (req, res) => {
   res.json(req.user);
 };

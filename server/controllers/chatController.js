@@ -2,24 +2,29 @@ require('dotenv').config();
 const pool = require('../config/db');
 const axios = require('axios');
 
+// Handles asking a legal question and storing the chat
 exports.askLegal = async (req, res) => {
   try {
     const { question, sessionId: incomingSessionId } = req.body;
-    const userId = req.userId;
+    // Set by authentication middleware
+    const userId = req.userId; 
+    // Use existing or create new session ID
     const sessionId = incomingSessionId || Date.now().toString();
 
+    // Send the question to the FastAPI AI service and get the answer
     const aiRes = await axios.post(`${process.env.AI_SERVICE_URL}/ask`, {
       query: question,
       session_id: sessionId,
     });
     const answer = aiRes.data.answer;
 
-    // 1. Ensure session exists
+    // Ensure the chat session exists for this user and session ID
     const [sessions] = await pool.execute(
       'SELECT * FROM chat_sessions WHERE session_id = ? AND user_id = ?',
       [sessionId, userId]
     );
     if (sessions.length === 0) {
+      // If session doesn't exist, create it with a title from the question
       const title = question.split(' ').slice(0, 30).join(' ');
       await pool.execute(
         'INSERT INTO chat_sessions (user_id, session_id, title) VALUES (?, ?, ?)',
@@ -27,13 +32,13 @@ exports.askLegal = async (req, res) => {
       );
     }
 
-    // 2. Always insert the message pair
+    // Insert the user's question and AI's answer into chat_messages
     await pool.execute(
       'INSERT INTO chat_messages (session_id, message, response) VALUES (?, ?, ?)',
       [sessionId, question, answer]
     );
 
-    res.json({ answer, sessionId });
+    res.json({ answer, sessionId });// Respond with the answer and session ID
   } catch (e) {
     console.error('askLegal error:', e);
     res.status(500).json({ error: e.message });
@@ -43,7 +48,7 @@ exports.askLegal = async (req, res) => {
 exports.getChatBySession = async (req, res) => {
   const userId = req.userId;
   const { sessionId } = req.params;
-
+  // Join chat_sessions and chat_messages to get all messages for this session
   const [rows] = await pool.execute(
     `SELECT m.message, m.response, m.created_at 
      FROM chat_sessions s
