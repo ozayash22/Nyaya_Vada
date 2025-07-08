@@ -18,7 +18,6 @@
 --
 -- Table structure for table `laws`
 --
-
 DROP TABLE IF EXISTS `laws`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -36,7 +35,11 @@ CREATE TABLE `laws` (
 
 LOCK TABLES `laws` WRITE;
 /*!40000 ALTER TABLE `laws` DISABLE KEYS */;
-INSERT INTO `laws` VALUES (3,'Criminal Procedure Code'),(1,'IPC');
+INSERT INTO `laws` VALUES (1,'IPC');
+Insert INTO `laws` values(3, 'CRPC');
+
+delete from laws where id = 2;
+select * from laws;
 /*!40000 ALTER TABLE `laws` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -4,6 +4,14 @@ from sentence_transformers import SentenceTransformer
 from rank_bm25 import BM25Okapi
 from nltk.tokenize import word_tokenize
 import logging
+import nltk
+nltk.data.path.append('./nltk_data')
+
+# Ensure 'punkt' is available, download if missing
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', download_dir='./nltk_data')
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +43,7 @@ def initialize_data():
         for row in sections_data
     ]
     
-    tokenized_corpus = [word_tokenize(text.lower()) for text in section_texts]
+    tokenized_corpus = [word_tokenize(text.lower(), language='english') for text in section_texts]
     bm25 = BM25Okapi(tokenized_corpus)
     
     bert_model = SentenceTransformer(settings.ai_model)
