@@ -26,7 +26,7 @@ function Login() {
     try {
       setError("");
       await login(email, password);
-      navigate("/"); // Redirect after login
+      navigate("/nyayavaad"); // Redirect after login
     } catch (err) {
       setError(err.response?.data?.error || "Invalid credentials");
     }

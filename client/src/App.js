@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/nyayavaad" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/chat/:sessionId?" element={<PrivateRoute><Chat /></PrivateRoute>} />
         </Routes>
       </AuthProvider>
