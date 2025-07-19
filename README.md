@@ -1,5 +1,5 @@
 #To run the Fast APi code use 
-uvicorn app.main:app --reload 
+uvicorn nyaya_vaad:app --reload 
 
 #To run Express Backend use
 node server.js
